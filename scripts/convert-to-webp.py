@@ -5,8 +5,20 @@ from __future__ import annotations
 
 import argparse
 import re
+import subprocess
 import sys
 from pathlib import Path
+
+
+def ensure_pillow_installed() -> None:
+    try:
+        import PIL  # noqa: F401
+    except ModuleNotFoundError:
+        print('Pillow is missing. Installing Pillow via pip...')
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--user', 'Pillow'])
+
+
+ensure_pillow_installed()
 
 from PIL import Image
 

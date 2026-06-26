@@ -7,6 +7,7 @@
     "convert:webp": "python scripts/convert-to-webp.py",
     "icons": "python scripts/generate-app-icons.py",
     "build": "npm run convert:webp && npm run icons && ng build",
+    "postinstall": "python -m pip install --user Pillow",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
