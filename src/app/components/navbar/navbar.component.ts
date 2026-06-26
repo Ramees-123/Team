@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     <nav class="navbar" [class.scrolled]="isScrolled" [class.menu-open]="isMenuOpen">
       <div class="nav-container">
         <div class="nav-logo" (click)="scrollToTop()">
-          <span class="logo-heart">💝</span>
+          <img class="logo-avatar" src="/assets/images/IMG-20241229-WA0067.webp" alt="Manammoo">
           <span class="logo-text">Manammoo <span class="logo-amp">&</span> Ramees</span>
         </div>
 
@@ -70,9 +70,14 @@ import { CommonModule } from '@angular/common';
       flex-shrink: 0;
     }
 
-    .logo-heart {
-      font-size: clamp(1.2rem, 3vw, 1.5rem);
-      animation: heartbeat 1.5s ease-in-out infinite;
+    .logo-avatar {
+      width: clamp(34px, 8vw, 40px);
+      height: clamp(34px, 8vw, 40px);
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 143, 171, 0.45);
+      box-shadow: 0 2px 12px rgba(255, 143, 171, 0.25);
+      flex-shrink: 0;
     }
 
     .logo-text {

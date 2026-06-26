@@ -20,6 +20,11 @@ import { CommonModule } from '@angular/common';
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
+        <div class="hero-portrait-wrap">
+          <img class="hero-portrait" src="/assets/images/IMG-20241229-WA0067.webp" alt="Manammoo">
+          <span class="portrait-ring" aria-hidden="true"></span>
+        </div>
+
         <div class="hero-badge">
           <span class="badge-spark">✨</span>
           <span class="badge-text">🎂 Happy Birthday Princess Manammoo 👑</span>
@@ -134,6 +139,38 @@ import { CommonModule } from '@angular/common';
       width: 100%;
       max-width: 820px;
       animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-portrait-wrap {
+      position: relative;
+      width: clamp(110px, 28vw, 150px);
+      height: clamp(110px, 28vw, 150px);
+      margin: 0 auto clamp(14px, 3vw, 22px);
+    }
+
+    .hero-portrait {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      border: 3px solid rgba(255, 180, 200, 0.45);
+      box-shadow: 0 12px 40px rgba(255, 143, 171, 0.28);
+      position: relative;
+      z-index: 1;
+    }
+
+    .portrait-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid rgba(240, 201, 135, 0.35);
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.06); opacity: 1; }
     }
 
     .hero-badge {

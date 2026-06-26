@@ -512,10 +512,10 @@ export class PhotoGalleryComponent {
   lightboxIndex = 0;
 
   heroPhotos = [
+    'IMG-20241229-WA0067.webp',
     'WhatsApp_Image_2026-06-11_at_2.35.22_PM.webp',
     'WhatsApp_Image_2026-06-11_at_2.51.31_PM.webp',
-    'WhatsApp_Image_2026-06-11_at_2.53.41_PM.webp',
-    'm1.webp'
+    'WhatsApp_Image_2026-06-11_at_2.53.41_PM.webp'
   ];
 
   categories = [

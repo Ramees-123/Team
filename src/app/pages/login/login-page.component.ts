@@ -14,7 +14,9 @@ import { FormsModule } from '@angular/forms';
       </div>
 
       <div class="login-container glass-card">
-        <div class="login-crown">👑</div>
+        <div class="login-portrait-wrap">
+          <img class="login-portrait" src="/assets/images/IMG-20241229-WA0067.webp" alt="Manammoo">
+        </div>
 
         <div class="login-header">
           <div class="lock-icon">🔐</div>
@@ -106,12 +108,21 @@ import { FormsModule } from '@angular/forms';
 
     @keyframes rotate360 { to { transform: rotate(360deg); } }
 
-    .login-crown {
-      font-size: 2.5rem;
-      margin-bottom: 8px;
-      animation: floatSlow 3s ease-in-out infinite;
+    .login-portrait-wrap {
+      margin-bottom: 12px;
       position: relative;
       z-index: 1;
+    }
+
+    .login-portrait {
+      width: clamp(96px, 24vw, 118px);
+      height: clamp(96px, 24vw, 118px);
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      border: 3px solid rgba(255, 143, 171, 0.5);
+      box-shadow: 0 8px 28px rgba(255, 143, 171, 0.25);
+      animation: floatSlow 3s ease-in-out infinite;
     }
 
     .login-header { margin-bottom: 24px; position: relative; z-index: 1; }
