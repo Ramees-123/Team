@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { portraitThumb } from '../../utils/image-path';
 
 @Component({
   selector: 'app-hero',
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
 
       <div class="hero-content">
         <div class="hero-portrait-wrap">
-          <img class="hero-portrait" src="/assets/images/IMG-20241229-WA0067.webp" alt="Manammoo">
+          <img class="hero-portrait" [src]="portraitThumb" alt="Manammoo" width="150" height="150" loading="eager" fetchpriority="high" decoding="async">
           <span class="portrait-ring" aria-hidden="true"></span>
         </div>
 
@@ -329,6 +330,7 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class HeroComponent implements OnInit {
+  portraitThumb = portraitThumb;
   particles: Array<{ style: Record<string, string> }> = [];
   floatingEmojis = ['💕','💖','🌸','✨','🎂','💗'].map((char, i) => ({
     char,

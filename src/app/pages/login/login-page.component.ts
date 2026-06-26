@@ -2,6 +2,7 @@
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { portraitThumb } from '../../utils/image-path';
 
 @Component({
   selector: 'app-login-page',
@@ -15,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 
       <div class="login-container glass-card">
         <div class="login-portrait-wrap">
-          <img class="login-portrait" src="/assets/images/IMG-20241229-WA0067.webp" alt="Manammoo">
+          <img class="login-portrait" [src]="portraitThumb" alt="Manammoo" width="118" height="118" loading="eager" fetchpriority="high" decoding="async">
         </div>
 
         <div class="login-header">
@@ -223,6 +224,7 @@ import { FormsModule } from '@angular/forms';
   `]
 })
 export class LoginPageComponent implements OnDestroy {
+  portraitThumb = portraitThumb;
   password = '';
   showError = false;
   isUnlocked = false;

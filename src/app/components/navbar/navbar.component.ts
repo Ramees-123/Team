@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { portraitThumb } from '../../utils/image-path';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { CommonModule } from '@angular/common';
     <nav class="navbar" [class.scrolled]="isScrolled" [class.menu-open]="isMenuOpen">
       <div class="nav-container">
         <div class="nav-logo" (click)="scrollToTop()">
-          <img class="logo-avatar" src="/assets/images/IMG-20241229-WA0067.webp" alt="Manammoo">
+          <img class="logo-avatar" [src]="portraitThumb" alt="Manammoo" width="40" height="40" loading="lazy" decoding="async">
           <span class="logo-text">Manammoo <span class="logo-amp">&</span> Ramees</span>
         </div>
 
@@ -215,6 +216,7 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class NavbarComponent implements OnInit {
+  portraitThumb = portraitThumb;
   isScrolled = false;
   isMenuOpen = false;
   activeSection = 'hero';

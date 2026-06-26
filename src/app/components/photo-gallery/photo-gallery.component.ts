@@ -1,5 +1,6 @@
 ﻿import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { imagePath } from '../../utils/image-path';
 
 @Component({
   selector: 'app-photo-gallery',
@@ -25,9 +26,10 @@ import { CommonModule } from '@angular/common';
           <article class="film-frame hero-frame"
                    role="listitem"
                    (click)="openLightbox(heroPhotos[0], 'Manammoo & Ramees', 1)">
-            <img [src]="getImagePath(heroPhotos[0])"
+            <img [src]="thumbPath(heroPhotos[0])"
                  alt="Manammoo"
                  loading="eager"
+                 fetchpriority="high"
                  decoding="async"
                  (error)="onImgError($event)">
             <span class="film-label">👑 Manammoo</span>
@@ -37,9 +39,9 @@ import { CommonModule } from '@angular/common';
                      *ngFor="let photo of heroPhotos.slice(1); let i = index"
                      role="listitem"
                      (click)="openLightbox(photo, 'Manammoo & Ramees', i + 2)">
-              <img [src]="getImagePath(photo)"
+              <img [src]="thumbPath(photo)"
                    [alt]="'Memory ' + (i + 2)"
-                   loading="eager"
+                   loading="lazy"
                    decoding="async"
                    (error)="onImgError($event)">
             </article>
@@ -61,7 +63,7 @@ import { CommonModule } from '@angular/common';
                        *ngFor="let photo of category.photos; let i = index"
                        (click)="openLightbox(photo, category.name, i + 1)">
                 <div class="scrap-img-wrap">
-                  <img [src]="getImagePath(photo)"
+                  <img [src]="thumbPath(photo)"
                        [alt]="category.name + ' ' + (i + 1)"
                        loading="lazy"
                        decoding="async"
@@ -80,7 +82,7 @@ import { CommonModule } from '@angular/common';
             <article class="masonry-item"
                      *ngFor="let photo of uniquePhotos; let i = index"
                      (click)="openLightbox(photo, 'All Memories', i + 1)">
-              <img [src]="getImagePath(photo)"
+              <img [src]="thumbPath(photo)"
                    [alt]="'Memory ' + (i + 1)"
                    loading="lazy"
                    decoding="async"
@@ -345,6 +347,8 @@ import { CommonModule } from '@angular/common';
       border: 1px solid rgba(255, 180, 200, 0.18);
       background: linear-gradient(160deg, #1a0b14, #2a1222);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      content-visibility: auto;
+      contain-intrinsic-size: 200px 240px;
     }
 
     .masonry-item:hover {
@@ -661,7 +665,11 @@ export class PhotoGalleryComponent {
   }
 
   getImagePath(photo: string): string {
-    return '/assets/images/' + encodeURIComponent(photo);
+    return imagePath(photo, false);
+  }
+
+  thumbPath(photo: string): string {
+    return imagePath(photo, true);
   }
 
   openLightbox(photo: string, category: string, num: number) {
@@ -711,6 +719,12 @@ export class PhotoGalleryComponent {
   onImgError(event: Event) {
     const img = event.target as HTMLImageElement;
     if (img.dataset['failed']) return;
+    const src = img.getAttribute('src') ?? '';
+    if (src.includes('/thumbs/')) {
+      img.dataset['failed'] = '1';
+      img.src = src.replace('/thumbs/', '/');
+      return;
+    }
     img.dataset['failed'] = '1';
     img.style.minHeight = '80px';
     img.alt = '💝 Photo loading...';
